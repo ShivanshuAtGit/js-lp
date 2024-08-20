@@ -27,7 +27,7 @@ const VideosSection = () => {
         <div className="flex flex-col lg:flex-row justify-between items-center gap-x-[84px]">
           {/* Video Thumbnails */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 px-6">
-            {videos.map((video) => (
+            {videos.map((video: any) => (
               <div key={video.id} className="relative group cursor-pointer">
                 <img
                   src={video.snippet.thumbnails.high.url}

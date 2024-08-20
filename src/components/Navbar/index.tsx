@@ -20,7 +20,7 @@ export default function Navbar() {
     const handleScroll = () => {
       const sections = document.querySelectorAll('.NAV_SECTION');
       let current = '';
-      sections.forEach((section) => {
+      sections.forEach((section: any) => {
         const sectionTop = section.offsetTop;
 
         const scrollWindowTop =

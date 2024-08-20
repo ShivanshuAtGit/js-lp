@@ -8,7 +8,7 @@ const ContactSection = () => {
   const [email, setEmail] = useState('');
   const [contactNumber, setContactNumber] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     const response = await fetch('/api/contact', {
