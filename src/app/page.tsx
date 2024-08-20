@@ -1,5 +1,15 @@
+'use client';
+import Image from 'next/image';
+
+import { socialIconConfig } from '@/constants/config.navigation';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
+import AboutSection from '@/containers/AboutSection';
+import VideosSection from '@/containers/VideosSection';
+import ContactSection from '@/containers/ContactSection';
+import LineDraw from '@/components/DrawLineComponent';
+import SocialIcons from '@/components/SocialIcons';
+import DrawNumber from '@/components/DrawNumber';
 
 export default function Home() {
   return (
@@ -7,25 +17,17 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <section className="common__container">
-        <div className="pt-[227px] sm:pt-[60vh]">
-          <section
-            id="about"
-            className="NAV_SECTION"
-            style={{ height: '100vh', width: '100%' }}
-          />
-          <section
-            id="videos"
-            className="NAV_SECTION"
-            style={{ height: '100vh', width: '100%' }}
-          />
-          <section
-            id="events"
-            className="NAV_SECTION"
-            style={{ height: '100vh', width: '100%' }}
-          />
+        <div>
+          <AboutSection />
+          <LineDraw renderOn="dWeb" />
+          <LineDraw renderOn="mWeb" />
+          <VideosSection />
+          <LineDraw renderOn="dWeb" />
+          <LineDraw renderOn="mWeb" />
+          <ContactSection />
+          <SocialIcons />
         </div>
       </section>
-      {/* <AboutSection /> */}
     </main>
   );
 }

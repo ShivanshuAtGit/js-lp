@@ -28,6 +28,9 @@ export default function Navbar() {
         setIsScrolled(scrollWindowTop > 10); // Update state based on scroll position
 
         const sectionHeight = section.clientHeight;
+        console.log(window.scrollY);
+        console.log(sectionTop, section.id);
+
         if (window.scrollY >= sectionTop - sectionHeight / 3) {
           current = section.id;
         }
@@ -48,9 +51,22 @@ export default function Navbar() {
     setModal((prevState) => !prevState);
   };
 
+  const handleScrollToSection = (e: any, section: string) => {
+    e.preventDefault();
+    setModal(false);
+
+    const targetSection = document.getElementById(section.toLowerCase());
+
+    if (targetSection) {
+      targetSection.scrollIntoView({
+        behavior: 'smooth' // Smooth scrolling
+      });
+    }
+  };
+
   return (
     <div
-      className={`fixed w-full nav__bg${isScrolled ? ' nav__bg-white' : ''}`}
+      className={`fixed z-10 w-full nav__bg${isScrolled ? ' nav__bg-white' : ''}`}
     >
       <header className="max-w-128 px-5 md:px-20 mx-auto">
         <nav className="flex justify-between items-center py-4 md:py-10">
@@ -61,6 +77,7 @@ export default function Navbar() {
                 <h3
                   key={key}
                   className={`nav-text cursor-pointer ${currentSection === key.toLowerCase() ? 'current' : ''}`}
+                  onClick={(e) => handleScrollToSection(e, key)}
                 >
                   {navLinksToRoutes[key]}
                 </h3>
@@ -74,6 +91,7 @@ export default function Navbar() {
             <NavModal
               closeModal={toggleModal}
               showModal={showModal}
+              handleScrollToSection={handleScrollToSection}
               currentSection={currentSection}
             />
           </DeviceRenderer>

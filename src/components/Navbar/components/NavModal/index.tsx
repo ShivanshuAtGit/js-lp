@@ -15,24 +15,16 @@ interface Props {
   closeModal: () => void;
   showModal: boolean;
   currentSection: string;
+  handleScrollToSection: (e: any, section: string) => void;
 }
 
-const NavModal = ({ closeModal, showModal, currentSection }: Props) => {
+const NavModal = ({
+  closeModal,
+  showModal,
+  currentSection,
+  handleScrollToSection
+}: Props) => {
   const navKeys = Object.keys(navLinksToRoutes);
-
-  const handleScrollToSection = (e: any, section: string) => {
-    e.preventDefault();
-    closeModal();
-
-    const targetSection = document.getElementById(section.toLowerCase());
-    console.log(section);
-
-    if (targetSection) {
-      targetSection.scrollIntoView({
-        behavior: 'smooth' // Smooth scrolling
-      });
-    }
-  };
 
   return (
     <div

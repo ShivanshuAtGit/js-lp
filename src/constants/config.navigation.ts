@@ -20,16 +20,16 @@ export const navLinksToRoutes: NavProps = {
   HOME: 'Home',
   ABOUT: 'About',
   VIDEOS: 'Videos',
-  EVENTS: 'Events'
+  CONTACT: 'Contact'
 };
 
 export const socialIconConfig: SocialProps = {
   'INSTA': {
-    link: '',
+    link: 'https://www.instagram.com/jagransamrat/',
     icon: instaIcon
   },
   'FACEBOOK': {
-    link: '',
+    link: 'https://www.facebook.com/babadharmendrapandey/',
     icon: facebookIcon
   },
   'TWITTER': {
@@ -37,7 +37,7 @@ export const socialIconConfig: SocialProps = {
     icon: twitterIcon
   },
   'YOUTUBE': {
-    link: '',
+    link: 'https://www.youtube.com/@Jagransamrat',
     icon: youtubeIcon
   }
 }
