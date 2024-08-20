@@ -70,8 +70,8 @@ const VideosSection = () => {
             <p className="t-para pt-2 sm:pt-4">
               A distinguished artist who uses soulful music to{' '}
               <strong>Sanskritik Virasat</strong> and <strong>Sanskar</strong>{' '}
-              into society while bridging Bharat's rich cultural heritage and
-              values.
+              into society while bridging Bharat&apos;s rich cultural heritage
+              and values.
             </p>
             <DrawNumber number={'03'} />
           </div>

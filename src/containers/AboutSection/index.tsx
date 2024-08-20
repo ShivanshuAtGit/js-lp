@@ -21,7 +21,7 @@ const AboutSection = () => {
           <p className="t-para pt-2 sm:pt-4">
             A distinguished artist who uses soulful music to{' '}
             <strong>Sanskritik Virasat</strong> and <strong>Sanskar</strong>{' '}
-            into society while bridging Bharat's rich cultural heritage and
+            into society while bridging Bharat&apos;s rich cultural heritage and
             values.
           </p>
           <div className="about-img-wrap">
@@ -31,12 +31,12 @@ const AboutSection = () => {
         <div className="section-grid_child">
           <p className="t-para">
             Dharmendra Pandey, also known as Jagran Samrat, is a musician and a
-            cultural enthusiast who beautifully blends Bharat's rich Sanskar and
-            Shiksha with music. He uses music as a medium to convey powerful
-            messages to society. Working for Sanatan Dharma, his purpose is to
-            deliver eye-opening performances that inspire and uplift the Samaj.
-            He is dedicated to offering his musical services to achieve this
-            noble goal.
+            cultural enthusiast who beautifully blends Bharat&apos;s rich
+            Sanskar and Shiksha with music. He uses music as a medium to convey
+            powerful messages to society. Working for Sanatan Dharma, his
+            purpose is to deliver eye-opening performances that inspire and
+            uplift the Samaj. He is dedicated to offering his musical services
+            to achieve this noble goal.
             <br />
             <br />
             <strong>
