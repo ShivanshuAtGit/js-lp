@@ -13,8 +13,8 @@ import mWebPageMarkSVG from '@/Assets/Images/Icons/line-and-number/page-mark-mwe
 export default function HeroSection() {
   return (
     <section id="home" className="hero__container NAV_SECTION">
-      <div className="">
-        <div className="pt-[250px] sm:pt-[400px] w-full">
+      <div className="md:-mx-6">
+        <div className="pt-[250px] sm:pt-[380px] w-full">
           <DeviceRenderer renderOn={['desktop', 'tablet']}>
             <Image alt="top-line" src={topLineSVG} />
           </DeviceRenderer>
