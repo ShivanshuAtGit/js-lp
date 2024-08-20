@@ -14,7 +14,7 @@ export default function HeroSection() {
   return (
     <section id="home" className="hero__container NAV_SECTION">
       <div className="md:-mx-6">
-        <div className="pt-[250px] sm:pt-[380px] w-full">
+        <div className="pt-[220px] sm:pt-[380px] w-full">
           <DeviceRenderer renderOn={['desktop', 'tablet']}>
             <Image alt="top-line" src={topLineSVG} />
           </DeviceRenderer>
