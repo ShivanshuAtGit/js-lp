@@ -18,6 +18,9 @@
   }
 }
 
+main {
+  overflow: hidden;
+}
 /* NAV BAR SECTION */
 
 .nav__bg-white {

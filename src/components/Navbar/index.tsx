@@ -69,7 +69,7 @@ export default function Navbar() {
       className={`fixed z-10 w-full nav__bg${isScrolled ? ' nav__bg-white' : ''}`}
     >
       <header className="max-w-128 px-5 md:px-20 mx-auto">
-        <nav className="flex justify-between items-center py-4 md:py-10">
+        <nav className="flex justify-between items-center py-4 md:py-5">
           <LOGO />
           <DeviceRenderer renderOn={['desktop', 'tablet']}>
             <div className="flex gap-x-5">
