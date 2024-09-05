@@ -28,8 +28,6 @@ export default function Navbar() {
         setIsScrolled(scrollWindowTop > 10); // Update state based on scroll position
 
         const sectionHeight = section.clientHeight;
-        console.log(window.scrollY);
-        console.log(sectionTop, section.id);
 
         if (window.scrollY >= sectionTop - sectionHeight / 3) {
           current = section.id;
