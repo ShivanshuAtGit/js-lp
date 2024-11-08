@@ -9,7 +9,7 @@ import VideosSection from '@/containers/VideosSection';
 import ContactSection from '@/containers/ContactSection';
 import LineDraw from '@/components/DrawLineComponent';
 import SocialIcons from '@/components/SocialIcons';
-import DrawNumber from '@/components/DrawNumber';
+import ContactButtons from '@/components/ContactButtons';
 import Head from 'next/head';
 
 export default function Home() {
@@ -31,6 +31,7 @@ export default function Home() {
             <LineDraw renderOn="mWeb" />
             <ContactSection />
             <SocialIcons />
+            <ContactButtons />
           </div>
         </section>
       </main>
