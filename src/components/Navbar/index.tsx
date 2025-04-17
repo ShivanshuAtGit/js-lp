@@ -19,9 +19,10 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = document.querySelectorAll('.NAV_SECTION');
+      const sections = document.querySelectorAll<HTMLElement>('.NAV_SECTION');
       let current = '';
-      for (const section of sections) {
+
+      sections.forEach((section) => {
         const sectionTop = section.offsetTop;
         const scrollWindowTop =
           window.pageYOffset || document.documentElement.scrollTop;
@@ -32,7 +33,7 @@ export default function Navbar() {
         if (window.scrollY >= sectionTop - sectionHeight / 3) {
           current = section.id;
         }
-      }
+      });
 
       setCurrentSection(current);
     };
@@ -90,7 +91,7 @@ export default function Navbar() {
           <DeviceRenderer renderOn={['desktop', 'tablet']}>
             <div className="flex gap-x-5">
               {navKeys.map((key) => (
-                <h3
+                <button
                   key={key}
                   className={`nav-text cursor-pointer ${currentSection === key.toLowerCase() ? 'current' : ''}`}
                   onClick={(e) => handleScrollToSection(e, key)}
@@ -99,27 +100,25 @@ export default function Navbar() {
                       handleScrollToSection(e as unknown as React.MouseEvent, key);
                     }
                   }}
-                  tabIndex={0}
                 >
                   {navLinksToRoutes[key]}
-                </h3>
+                </button>
               ))}
             </div>
           </DeviceRenderer>
           <DeviceRenderer renderOn={'phone'}>
-            <div
+            <button
               onClick={toggleModal}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   toggleModal();
                 }
               }}
-              tabIndex={0}
-              role="button"
               aria-label="Toggle menu"
+              className="p-2"
             >
               <HamburgerSVG alt="menu" color={isScrolled ? 'black' : 'white'} />
-            </div>
+            </button>
             <NavModal
               closeModal={toggleModal}
               showModal={showModal}
