@@ -7,24 +7,40 @@ const ContactSection = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [contactNumber, setContactNumber] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState({ text: '', type: '' });
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    setMessage({ text: '', type: '' });
 
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ fullName, email, contactNumber })
-    });
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ fullName, email, contactNumber }),
+      });
 
-    if (response.ok) {
-      alert('Message sent successfully!');
-    } else {
-      alert('Failed to send message.');
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage({ text: 'Message sent successfully!', type: 'success' });
+        setFullName('');
+        setEmail('');
+        setContactNumber('');
+      } else {
+        setMessage({ text: data.error || 'Failed to send message.', type: 'error' });
+      }
+    } catch (error) {
+      setMessage({ text: 'An error occurred. Please try again.', type: 'error' });
+    } finally {
+      setIsLoading(false);
     }
   };
+
   return (
     <section id="contact" className="NAV_SECTION">
       <div className="max-w-128 px-5 md:px-20 mx-auto">
@@ -54,6 +70,7 @@ const ContactSection = () => {
               id="fullName"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
+              required
             />
           </div>
           <div className="mb-4">
@@ -66,6 +83,7 @@ const ContactSection = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
           <div className="mb-4">
@@ -77,14 +95,25 @@ const ContactSection = () => {
             </label>
             <input
               className="w-full p-2 mt-2 border border-gray-300 rounded"
-              type="text"
+              type="tel"
               id="contactNumber"
               value={contactNumber}
               onChange={(e) => setContactNumber(e.target.value)}
+              required
             />
           </div>
-          <button className="w-full p-2 mt-4 bg-[#472f37] text-white rounded">
-            Submit
+          {message.text && (
+            <div className={`mb-4 p-2 rounded ${message.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+              }`}>
+              {message.text}
+            </div>
+          )}
+          <button
+            className="w-full p-2 mt-4 bg-[#472f37] text-white rounded disabled:opacity-50"
+            type="submit"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Sending...' : 'Submit'}
           </button>
           <DrawNumber number={'04'} />
         </form>

@@ -71,16 +71,12 @@ main {
   background-color: #fb8b24;
   transition: all 200ms ease-in;
   transform: translate(45%, -45%) scale(0.1);
-  border-radius: 50%;
-  opacity: 0;
   visibility: hidden;
 }
 
 .nav_modal.open {
   visibility: unset;
   transform: translate(0%, -0%) scale(1);
-  border-radius: 0;
-  opacity: 1;
 }
 
 .nav_modal .nav__js-icon {

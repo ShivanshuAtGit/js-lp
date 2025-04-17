@@ -1,0 +1,45 @@
+.nav_modal {
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  /* opacity: 0; */
+  visibility: visible;
+  position: fixed;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+}
+
+.nav_modal.open {
+  transform: translateX(0);
+  /* opacity: 1; */
+}
+
+.nav__bg {
+  background: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.nav__bg-white {
+  background: white;
+}
+
+.nav-text {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav__js-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  opacity: 0.1;
+}
+
+.social_icon {
+  transition: transform 0.3s ease;
+}
+
+.social_icon:hover {
+  transform: scale(1.1);
+} 

@@ -1,4 +1,7 @@
-import { ReactNode, useEffect, useState } from 'react';
+'use client';
+
+import type { ReactNode } from 'react';
+import { useEffect, useState } from 'react';
 
 interface DeviceRendererProps {
   renderOn: string | string[];
@@ -32,9 +35,8 @@ const DeviceRenderer: React.FC<DeviceRendererProps> = ({ renderOn, children }) =
   const shouldRender = () => {
     if (Array.isArray(renderOn)) {
       return renderOn.includes(device);
-    } else {
-      return device === renderOn;
     }
+    return device === renderOn;
   };
 
   return shouldRender() ? <>{children}</> : null;

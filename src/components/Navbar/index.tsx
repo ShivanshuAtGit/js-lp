@@ -8,6 +8,7 @@ import NavModal from './components/NavModal';
 import LOGO from './components/LOGO';
 
 import HamburgerSVG from './Images/hamburger';
+import './styles.css';
 
 export default function Navbar() {
   const [currentSection, setCurrentSection] = useState<string>(
@@ -20,19 +21,18 @@ export default function Navbar() {
     const handleScroll = () => {
       const sections = document.querySelectorAll('.NAV_SECTION');
       let current = '';
-      sections.forEach((section: any) => {
+      for (const section of sections) {
         const sectionTop = section.offsetTop;
-
         const scrollWindowTop =
           window.pageYOffset || document.documentElement.scrollTop;
-        setIsScrolled(scrollWindowTop > 10); // Update state based on scroll position
+        setIsScrolled(scrollWindowTop > 10);
 
         const sectionHeight = section.clientHeight;
 
         if (window.scrollY >= sectionTop - sectionHeight / 3) {
           current = section.id;
         }
-      });
+      }
 
       setCurrentSection(current);
     };
@@ -46,18 +46,36 @@ export default function Navbar() {
   const navKeys = Object.keys(navLinksToRoutes);
 
   const toggleModal = () => {
-    setModal((prevState) => !prevState);
+    if (showModal) {
+      // Start closing animation
+      const modal = document.querySelector('.nav_modal');
+      if (modal) {
+        modal.classList.remove('open');
+        // Wait for animation to complete before hiding
+        setTimeout(() => {
+          setModal(false);
+        }, 300); // Match this with the transition duration
+      }
+    } else {
+      setModal(true);
+      // Small delay to ensure the modal is in the DOM before adding the open class
+      setTimeout(() => {
+        const modal = document.querySelector('.nav_modal');
+        if (modal) {
+          modal.classList.add('open');
+        }
+      }, 10);
+    }
   };
 
-  const handleScrollToSection = (e: any, section: string) => {
+  const handleScrollToSection = (e: React.MouseEvent, section: string) => {
     e.preventDefault();
     setModal(false);
 
     const targetSection = document.getElementById(section.toLowerCase());
-
     if (targetSection) {
       targetSection.scrollIntoView({
-        behavior: 'smooth' // Smooth scrolling
+        behavior: 'smooth'
       });
     }
   };
@@ -76,6 +94,12 @@ export default function Navbar() {
                   key={key}
                   className={`nav-text cursor-pointer ${currentSection === key.toLowerCase() ? 'current' : ''}`}
                   onClick={(e) => handleScrollToSection(e, key)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      handleScrollToSection(e as unknown as React.MouseEvent, key);
+                    }
+                  }}
+                  tabIndex={0}
                 >
                   {navLinksToRoutes[key]}
                 </h3>
@@ -83,7 +107,17 @@ export default function Navbar() {
             </div>
           </DeviceRenderer>
           <DeviceRenderer renderOn={'phone'}>
-            <div onClick={toggleModal}>
+            <div
+              onClick={toggleModal}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  toggleModal();
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              aria-label="Toggle menu"
+            >
               <HamburgerSVG alt="menu" color={isScrolled ? 'black' : 'white'} />
             </div>
             <NavModal

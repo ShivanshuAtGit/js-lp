@@ -33,7 +33,7 @@ export const socialIconConfig: SocialProps = {
     icon: facebookIcon
   },
   'TWITTER': {
-    link: 'https://x.com/Dharmendra78972',
+    link: 'https://x.com/jagransamrat',
     icon: twitterIcon
   },
   'YOUTUBE': {
