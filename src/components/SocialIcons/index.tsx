@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { socialIconConfig } from '@/constants/config.navigation';
 
@@ -10,9 +11,21 @@ const SocialIcons = () => {
         {Object.keys(socialIconConfig).map((socialKey) => {
           const socialIcon = socialIconConfig[socialKey];
           return (
-            <a className="social_icon" href={socialIcon.link} key={socialKey}>
-              <Image alt={socialKey} src={socialIcon.icon} />
-            </a>
+            <Link
+              key={socialKey}
+              href={socialIcon.link}
+              rel="canonical"
+              target="_blank"
+              className="social_icon"
+            >
+              <Image
+                alt={`${socialKey} icon`}
+                src={socialIcon.icon}
+                width={24}
+                height={24}
+                className="object-contain"
+              />
+            </Link>
           );
         })}
       </div>

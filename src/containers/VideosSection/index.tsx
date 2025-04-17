@@ -2,9 +2,27 @@
 import React, { useEffect, useState } from 'react';
 import { playFlairFont } from '@/utils/fonts';
 import DrawNumber from '@/components/DrawNumber';
+import Image from 'next/image';
+import Link from 'next/link';
+import './styles.modules.css';
+
+interface Video {
+  id: string;
+  snippet: {
+    title: string;
+    thumbnails: {
+      high: {
+        url: string;
+      };
+    };
+    resourceId: {
+      videoId: string;
+    };
+  };
+}
 
 const VideosSection = () => {
-  const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState<Video[]>([]);
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -27,43 +45,45 @@ const VideosSection = () => {
       <div className="max-w-128 px-5 md:px-20 mx-auto">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-x-[84px]">
           {/* Video Thumbnails */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 px-6">
-            {videos.map(
-              (video: any) =>
-                video?.snippet?.thumbnails?.high?.url && (
-                  <div key={video.id} className="relative group cursor-pointer">
-                    <img
-                      src={video.snippet.thumbnails.high.url}
-                      alt={video.snippet.title}
-                      className="object-cover h-full w-full"
-                    />
-                    <div className="absolute inset-0 bg-black bg-opacity-50 group-hover:bg-opacity-30 transition-opacity duration-300"></div>
-                    <button
-                      className="absolute inset-0 flex justify-start items-end"
-                      onClick={() =>
-                        window.open(
-                          `https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`,
-                          '_blank'
-                        )
-                      }
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 px-6 w-full">
+            {videos.map((video) =>
+              video?.snippet?.thumbnails?.high?.url ? (
+                <div key={video.id} className="relative group cursor-pointer w-full aspect-video">
+                  <Image
+                    src={video.snippet.thumbnails.high.url}
+                    alt={video.snippet.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover rounded-lg"
+                    priority={false}
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-50 group-hover:bg-opacity-30 transition-opacity duration-300" />
+                  <Link
+                    href={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`}
+                    rel="canonical"
+                    target="_blank"
+                    className="absolute inset-0 flex justify-start items-end"
+                  >
+                    <svg
+                      width="48"
+                      height="48"
+                      viewBox="0 0 48 48"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-label="Play video"
                     >
-                      <svg
-                        width="48"
-                        height="48"
-                        viewBox="0 0 48 48"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M0 0H48V48H0V0Z"
-                          fill="black"
-                          fill-opacity="0.8"
-                        />
-                        <path d="M16 14V34L33 24L16 14Z" fill="#FFD98C" />
-                      </svg>
-                    </button>
-                  </div>
-                )
+                      <title>Play video button</title>
+                      <path
+                        d="M0 0H48V48H0V0Z"
+                        fill="black"
+                        fillOpacity="0.8"
+                      />
+                      <path d="M16 14V34L33 24L16 14Z" fill="#FFD98C" />
+                    </svg>
+                  </Link>
+                </div>
+              ) : null
             )}
           </div>
 

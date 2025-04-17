@@ -24,8 +24,17 @@ const AboutSection = () => {
             into society while bridging Bharat&apos;s rich cultural heritage and
             values.
           </p>
-          <div className="about-img-wrap">
-            <Image alt="my pic" src={aboutPic} />
+          <div className="about-img-wrap relative aspect-[4/3]">
+            <Image
+              alt="Jagran Samrat Dharmendra Pandey"
+              src={aboutPic}
+              width={500}
+              height={375}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover rounded-lg"
+              priority
+              quality={90}
+            />
           </div>
         </div>
         <div className="section-grid_child">
